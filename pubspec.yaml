@@ -1,0 +1,29 @@
+name: exam_result
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  iconly: 1.0.1
+  get: 4.6.5
+  modal_progress_hud_nsn: 0.2.1
+  http: 0.13.4
+  get_storage: 2.0.3
+  jiffy: 5.0.0
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets: 
+    - assets/images/
+    - assets/icons/
+  uses-material-design: true
+
