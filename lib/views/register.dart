@@ -113,7 +113,7 @@ class RegisterView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             primary: kPrimaryColor),
-                        onPressed: () => controller.register(),
+                        onPressed: () => controller.register(context),
                         child: const Text('Submit'),
                       ),
                     )

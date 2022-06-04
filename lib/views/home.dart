@@ -4,6 +4,7 @@ import 'package:exam_result/controllers/login_controller.dart';
 import 'package:exam_result/widgets/exam_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -13,6 +14,17 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          GetBuilder<LoginController>(builder: (cont) {
+            return IconButton(
+              onPressed: () => cont.logout(context),
+              icon: const Icon(
+                IconlyBold.logout,
+                color: kPrimaryColor,
+              ),
+            );
+          })
+        ],
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: const Text(
           'Exam Veiwer',
@@ -59,21 +71,21 @@ class HomeView extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.only(right: 12),
                   padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(  
-                    border: Border.all(width: 2,color: kPrimaryColor),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(10, 0),
-                      blurRadius: 12,
-                      color: Colors.grey.shade100,
-                    ),
-                    BoxShadow(
-                      offset: const Offset(10, 0),
-                      blurRadius: 12,
-                      color: Colors.grey.shade200,
-                    )
-                  ]),
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 2, color: kPrimaryColor),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(10, 0),
+                          blurRadius: 12,
+                          color: Colors.grey.shade100,
+                        ),
+                        BoxShadow(
+                          offset: const Offset(10, 0),
+                          blurRadius: 12,
+                          color: Colors.grey.shade200,
+                        )
+                      ]),
                   child: const CircleAvatar(
                     backgroundImage: AssetImage('assets/images/j.png'),
                   ))

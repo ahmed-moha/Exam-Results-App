@@ -37,6 +37,8 @@ class HomeController extends GetxController {
     update();
   }
 
+
+
   @override
   void onInit() {
     super.onInit();

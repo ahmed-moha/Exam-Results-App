@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:exam_result/constants.dart';
 import 'package:exam_result/models/user_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+
+import '../views/home.dart';
 
 class RegisterController extends GetxController {
   final box = GetStorage();
@@ -20,12 +22,20 @@ class RegisterController extends GetxController {
     getUser();
   }
 
-  register() async {
+  register(BuildContext context) async {
     if (registerFomrKey.currentState!.validate()) {
       try {
         isLoading = true;
         update();
         user = await reg();
+        update();
+        await saveUser(user);
+
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeView(),
+            ));
         print('USER NAME IS : ${user.name}');
       } catch (e) {
         print('THE ERROR $e');
@@ -48,7 +58,7 @@ class RegisterController extends GetxController {
       print(response.body);
       final decodedData = jsonDecode(response.body);
       if (!decodedData['status']) throw decodedData;
-      await saveUser(UserModel.fromJson(decodedData['message']));
+
       return UserModel.fromJson(decodedData['message']);
     } else {
       throw response.body;
@@ -57,7 +67,8 @@ class RegisterController extends GetxController {
 
   saveUser(UserModel user) {
     box.remove(kUserInfo);
-    box.write(kUserInfo, user);
+    box.write(kUserInfo, user.toJson());
+    update();
   }
 
   getUser() {
